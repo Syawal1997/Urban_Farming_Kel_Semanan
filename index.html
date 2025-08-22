@@ -21,6 +21,8 @@
             --accent-color: #8fbc8f;
             --light-color: #f5f5f5;
             --dark-color: #2f4f4f;
+            --header-height: 70px;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
         }
 
         body {
@@ -29,16 +31,17 @@
             line-height: 1.6;
         }
 
-        /* Header */
+        /* Header dengan tampilan modern */
         header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1rem;
+            background: white;
+            color: var(--dark-color);
+            padding: 0.5rem 1rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
+            height: var(--header-height);
         }
 
         .container {
@@ -51,6 +54,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 100%;
         }
 
         .logo {
@@ -61,18 +65,47 @@
         .logo h1 {
             font-size: 1.5rem;
             margin-left: 10px;
+            color: var(--primary-color);
         }
 
         .logo-img {
-            width: 50px;
-            height: 50px;
-            background-color: white;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Search Bar seperti aplikasi e-commerce */
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
             color: var(--primary-color);
-            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Navigation */
@@ -86,29 +119,49 @@
         }
 
         nav ul li a {
-            color: white;
+            color: var(--dark-color);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 5px 10px;
             border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 5px;
         }
 
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--primary-color);
         }
 
-        /* Hero Section */
+        /* Hero Section dengan carousel */
         .hero {
-            background: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 500px;
+            margin-top: var(--header-height);
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
-            margin-top: 70px;
             position: relative;
         }
 
-        .hero::before {
+        .carousel-item::before {
             content: '';
             position: absolute;
             top: 0;
@@ -118,7 +171,7 @@
             background: rgba(46, 139, 87, 0.7);
         }
 
-        .hero-content {
+        .carousel-content {
             position: relative;
             color: white;
             text-align: center;
@@ -126,46 +179,52 @@
             padding: 0 20px;
         }
 
-        .hero-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .carousel-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
         }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
+        .carousel-content p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: white;
-            color: var(--primary-color);
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
         }
 
-        .btn:hover {
-            background-color: var(--accent-color);
-            color: white;
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
         }
 
-        /* Sections */
-        section {
-            padding: 60px 0;
+        .carousel-dot.active {
+            background: white;
+        }
+
+        /* Kategori Section */
+        .categories {
+            padding: 20px 0;
+            background: white;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             color: var(--primary-color);
         }
 
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             position: relative;
             display: inline-block;
             padding-bottom: 10px;
@@ -177,12 +236,138 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+        }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: transform 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .category-name {
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        /* Produk Unggulan */
+        .featured-products {
+            padding: 30px 0;
+            background-color: #f0fff0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            color: #ffc107;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .product-rating span {
+            color: #777;
+            margin-left: 5px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 8px 0;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
             background-color: var(--secondary-color);
         }
 
         /* About Section */
+        .about {
+            padding: 40px 0;
+            background: white;
+        }
+
         .about-content {
             display: flex;
             flex-wrap: wrap;
@@ -204,11 +389,12 @@
         .about-image img {
             width: 100%;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
         /* Gallery Section */
         .gallery {
+            padding: 40px 0;
             background-color: #f0fff0;
         }
 
@@ -223,7 +409,7 @@
             overflow: hidden;
             border-radius: 10px;
             height: 200px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
         .gallery-item img {
@@ -238,6 +424,11 @@
         }
 
         /* Contact Section */
+        .contact {
+            padding: 40px 0;
+            background: white;
+        }
+
         .contact-content {
             display: flex;
             flex-wrap: wrap;
@@ -307,7 +498,7 @@
 
         .footer-section {
             flex: 1;
-            min-width: 300px;
+            min-width: 250px;
             margin-bottom: 20px;
         }
 
@@ -315,6 +506,7 @@
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
+            font-size: 1.2rem;
         }
 
         .footer-section h3::after {
@@ -322,9 +514,27 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 2px;
             background-color: var(--secondary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
         }
 
         .social-links a {
@@ -344,27 +554,86 @@
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Floating Cart Icon */
+        .floating-cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ff4757;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
-                text-align: center;
+                flex-wrap: wrap;
             }
-
-            nav ul {
-                margin-top: 20px;
+            
+            .search-bar {
+                order: 3;
+                max-width: 100%;
+                margin: 10px 0 0;
             }
-
-            .hero-content h2 {
-                font-size: 2rem;
+            
+            nav {
+                margin-left: auto;
             }
-
+            
+            .hero {
+                height: 250px;
+            }
+            
+            .carousel-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .category-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
             .about-content, .contact-content, .footer-content {
                 flex-direction: column;
             }
-
+            
             .about-text, .about-image {
                 padding-right: 0;
                 margin-bottom: 20px;
@@ -381,27 +650,176 @@
                     <div class="logo-img">
                         <i class="fas fa-leaf"></i>
                     </div>
-                    <h1>Urban Farming Kelurahan Semanan</h1>
+                    <h1>Urban Farming</h1>
                 </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="Cari produk, sayuran, atau tanaman...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
                 <nav>
                     <ul>
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#about">Tentang</a></li>
-                        <li><a href="#gallery">Galeri</a></li>
-                        <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#products"><i class="fas fa-seedling"></i> Produk</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                        <li><a href="#contact"><i class="fas fa-phone"></i> Kontak</a></li>
+                        <li><a href="#cart"><i class="fas fa-shopping-cart"></i> Keranjang</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section dengan Carousel -->
     <section id="home" class="hero">
+        <div class="carousel">
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                <div class="container">
+                    <div class="carousel-content">
+                        <h2>Selamat Datang di Urban Farming Semanan</h2>
+                        <p>Mewujudkan lingkungan hijau yang produktif dan berkelanjutan</p>
+                        <a href="#products" class="btn">Belanja Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+        </div>
+    </section>
+
+    <!-- Kategori Section -->
+    <section class="categories">
         <div class="container">
-            <div class="hero-content">
-                <h2>Selamat Datang di Urban Farming Kelurahan Semanan</h2>
-                <p>Mewujudkan lingkungan hijau yang produktif dan berkelanjutan melalui pertanian perkotaan</p>
-                <a href="#about" class="btn">Pelajari Lebih Lanjut</a>
+            <div class="section-title">
+                <h2>Kategori Produk</h2>
+            </div>
+            <div class="categories-grid">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="category-name">Bibit</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-carrot"></i>
+                    </div>
+                    <div class="category-name">Sayuran</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <div class="category-name">Buah</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-mortar-pestle"></i>
+                    </div>
+                    <div class="category-name">Pupuk</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="category-name">Peralatan</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="category-name">Edukasi</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produk Unggulan -->
+    <section id="products" class="featured-products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Produk Unggulan</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Paket Bibit Sayuran">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Paket Bibit Sayuran Organik</div>
+                        <div class="product-price">Rp 35.000</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(42)</span>
+                        </div>
+                        <button class="add-to-cart">+ Keranjang</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1596726895343-5b2f4be5c72a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pupuk Organik">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Pupuk Organik Cair 500ml</div>
+                        <div class="product-price">Rp 45.000</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(28)</span>
+                        </div>
+                        <button class="add-to-cart">+ Keranjang</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1598034992937-93ddb1fa5c3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Set Alat Berkebun">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Set Alat Berkebun Mini</div>
+                        <div class="product-price">Rp 85.000</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(56)</span>
+                        </div>
+                        <button class="add-to-cart">+ Keranjang</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1560881726-2cd3eec5f50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pot Tanaman">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Pot Tanaman Hias Modern</div>
+                        <div class="product-price">Rp 75.000</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(19)</span>
+                        </div>
+                        <button class="add-to-cart">+ Keranjang</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -427,7 +845,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
+    <section class="gallery">
         <div class="container">
             <div class="section-title">
                 <h2>Galeri Kegiatan</h2>
@@ -445,12 +863,6 @@
                 <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Pelatihan Urban Farming">
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Kebun Vertikal">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Komposting">
-                </div>
             </div>
         </div>
     </section>
@@ -464,15 +876,15 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Informasi Kontak</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Jl. Meruya Ilir Raya No. 123, Semanan, Jakarta Barat</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Semanan Raya Blok Masjid No.45, RT.9/RW.8, Semanan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11850, Indonesia(Jl. Semanan Raya Blok Masjid No.45, RT.9/RW.8, Semanan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11850, Indonesia)</p>
                     <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
-                    <p><i class="fas fa-envelope"></i> info@urbanfarmingsemanan.id</p>
+                    <p><i class="fas fa-envelope"></i> semanansinergi@gmail.com</p>
                     <p><i class="fas fa-clock"></i> Senin - Jumat: 08:00 - 16:00</p>
                     <div class="social-links">
                         <a href="https://wa.me/6281385150544" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.instagram.com/kelurahansemanan" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCexample" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/channel/SemananSinergi" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@semanansinergi?_t=ZS-8z6Q1y4Y8jH&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 <div class="contact-form">
@@ -490,7 +902,7 @@
                             <label for="message">Pesan</label>
                             <textarea id="message" placeholder="Tulis pesan Anda"></textarea>
                         </div>
-                        <button type="submit" class="btn">Kirim Pesan</button>
+                        <button type="submit" class="add-to-cart">Kirim Pesan</button>
                     </form>
                 </div>
             </div>
@@ -509,22 +921,88 @@
                     <h3>Link Cepat</h3>
                     <ul>
                         <li><a href="#home">Beranda</a></li>
+                        <li><a href="#products">Produk</a></li>
                         <li><a href="#about">Tentang</a></li>
-                        <li><a href="#gallery">Galeri</a></li>
                         <li><a href="#contact">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Kontak</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Jl. Meruya Ilir Raya No. 123, Semanan</p>
+                    <h3>Layanan</h3>
+                    <ul>
+                        <li><a href="#">Bantuan</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Pengembalian</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Hubungi Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Semanan Raya Blok Masjid No.45, RT.9/RW.8, Semanan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11850, Indonesia(Jl. Semanan Raya Blok Masjid No.45, RT.9/RW.8, Semanan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11850, Indonesia)</p>
                     <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
-                    <p><i class="fas fa-envelope"></i> info@urbanfarmingsemanan.id</p>
+                    <p><i class="fas fa-envelope"></i> semanansinergi@gmail.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Urban Farming Kelurahan Semanan. All rights reserved.</p>
+                <p>&copy; 2025 Urban Farming Kelurahan Semanan. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Floating Cart Icon -->
+    <div class="floating-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-count">3</div>
+    </div>
+
+    <script>
+        // Simulasi carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fungsi untuk carousel
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.carousel-item');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            function showSlide(n) {
+                slides.forEach(slide => slide.style.transform = `translateX(-${n * 100}%)`);
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[n].classList.add('active');
+                currentSlide = n;
+            }
+            
+            // Otomatis ganti slide setiap 5 detik
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }, 5000);
+            
+            // Tambahkan event listener untuk dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+            
+            // Fungsi untuk menambah produk ke keranjang
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+            let count = 3;
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    count++;
+                    cartCount.textContent = count;
+                    
+                    // Animasi tombol
+                    this.textContent = "Ditambahkan ✓";
+                    this.style.backgroundColor = "#4CAF50";
+                    
+                    setTimeout(() => {
+                        this.textContent = "+ Keranjang";
+                        this.style.backgroundColor = "";
+                    }, 1500);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
