@@ -190,6 +190,22 @@
             margin: 0 auto 20px;
         }
 
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
         .carousel-nav {
             position: absolute;
             bottom: 20px;
@@ -592,6 +608,141 @@
             font-weight: bold;
         }
 
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .cart-items {
+            margin: 20px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 500;
+        }
+
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #eee;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            width: 30px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 2px;
+        }
+
+        .remove-item {
+            color: #ff4757;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding-top: 10px;
+            border-top: 2px solid #eee;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Form Status */
+        .form-status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
@@ -664,7 +815,7 @@
                         <li><a href="#products"><i class="fas fa-seedling"></i> Produk</a></li>
                         <li><a href="#about"><i class="fas fa-info-circle"></i> Tentang</a></li>
                         <li><a href="#contact"><i class="fas fa-phone"></i> Kontak</a></li>
-                        <li><a href="#cart"><i class="fas fa-shopping-cart"></i> Keranjang</a></li>
+                        <li><a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i> Keranjang</a></li>
                     </ul>
                 </nav>
             </div>
@@ -760,7 +911,7 @@
                             <i class="fas fa-star-half-alt"></i>
                             <span>(42)</span>
                         </div>
-                        <button class="add-to-cart">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="1" data-name="Paket Bibit Sayuran Organik" data-price="35000" data-img="https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">+ Keranjang</button>
                     </div>
                 </div>
                 
@@ -779,7 +930,7 @@
                             <i class="far fa-star"></i>
                             <span>(28)</span>
                         </div>
-                        <button class="add-to-cart">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="2" data-name="Pupuk Organik Cair 500ml" data-price="45000" data-img="https://images.unsplash.com/photo-1596726895343-5b2f4be5c72a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">+ Keranjang</button>
                     </div>
                 </div>
                 
@@ -798,7 +949,7 @@
                             <i class="fas fa-star"></i>
                             <span>(56)</span>
                         </div>
-                        <button class="add-to-cart">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="3" data-name="Set Alat Berkebun Mini" data-price="85000" data-img="https://images.unsplash.com/photo-1598034992937-93ddb1fa5c3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">+ Keranjang</button>
                     </div>
                 </div>
                 
@@ -817,7 +968,7 @@
                             <i class="far fa-star"></i>
                             <span>(19)</span>
                         </div>
-                        <button class="add-to-cart">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="4" data-name="Pot Tanaman Hias Modern" data-price="75000" data-img="https://images.unsplash.com/photo-1560881726-2cd3eec5f50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">+ Keranjang</button>
                     </div>
                 </div>
             </div>
@@ -876,31 +1027,36 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Informasi Kontak</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Jl. Semanan Raya Blok Masjid No.45, RT.9/RW.8, Semanan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11850, Indonesia(Jl. Semanan Raya Blok Masjid No.45, RT.9/RW.8, Semanan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11850, Indonesia)</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Meruya Ilir Raya No. 123, Semanan, Jakarta Barat</p>
                     <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
                     <p><i class="fas fa-envelope"></i> semanansinergi@gmail.com</p>
                     <p><i class="fas fa-clock"></i> Senin - Jumat: 08:00 - 16:00</p>
                     <div class="social-links">
-                        <a href="https://wa.me/6281385150544" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.instagram.com/kelurahansemanan" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/SemananSinergi" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.tiktok.com/@semanansinergi?_t=ZS-8z6Q1y4Y8jH&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/6281234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/urbanfarming_semanan" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCexample" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
                     </div>
                 </div>
                 <div class="contact-form">
                     <h3>Kirim Pesan</h3>
-                    <form>
+                    <div id="form-status" class="form-status"></div>
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nama</label>
-                            <input type="text" id="name" placeholder="Masukkan nama Anda">
+                            <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Masukkan email Anda">
+                            <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" name="subject" placeholder="Subjek pesan" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Pesan</label>
-                            <textarea id="message" placeholder="Tulis pesan Anda"></textarea>
+                            <textarea id="message" name="message" placeholder="Tulis pesan Anda" required></textarea>
                         </div>
                         <button type="submit" class="add-to-cart">Kirim Pesan</button>
                     </form>
@@ -937,26 +1093,89 @@
                 </div>
                 <div class="footer-section">
                     <h3>Hubungi Kami</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Jl. Semanan Raya Blok Masjid No.45, RT.9/RW.8, Semanan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11850, Indonesia(Jl. Semanan Raya Blok Masjid No.45, RT.9/RW.8, Semanan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11850, Indonesia)</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Meruya Ilir Raya No. 123, Semanan</p>
                     <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
                     <p><i class="fas fa-envelope"></i> semanansinergi@gmail.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Urban Farming Kelurahan Semanan. All rights reserved.</p>
+                <p>&copy; 2023 Urban Farming Kelurahan Semanan. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <!-- Floating Cart Icon -->
-    <div class="floating-cart">
+    <div class="floating-cart" id="floating-cart">
         <i class="fas fa-shopping-cart"></i>
-        <div class="cart-count">3</div>
+        <div class="cart-count">0</div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-cart">&times;</span>
+            <h2>Keranjang Belanja</h2>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+                <p id="empty-cart-message">Keranjang belanja Anda masih kosong.</p>
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">Rp 0</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">Checkout via WhatsApp</button>
+        </div>
     </div>
 
     <script>
-        // Simulasi carousel
+        // Data produk
+        const products = [
+            {
+                id: 1,
+                name: "Paket Bibit Sayuran Organik",
+                price: 35000,
+                image: "https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                name: "Pupuk Organik Cair 500ml",
+                price: 45000,
+                image: "https://images.unsplash.com/photo-1596726895343-5b2f4be5c72a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                name: "Set Alat Berkebun Mini",
+                price: 85000,
+                image: "https://images.unsplash.com/photo-1598034992937-93ddb1fa5c3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                name: "Pot Tanaman Hias Modern",
+                price: 75000,
+                image: "https://images.unsplash.com/photo-1560881726-2cd3eec5f50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // Keranjang belanja
+        let cart = [];
+        const cartCount = document.querySelector('.cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const floatingCart = document.getElementById('floating-cart');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const cartBtn = document.getElementById('cart-btn');
+
+        // Inisialisasi keranjang dari localStorage jika ada
         document.addEventListener('DOMContentLoaded', function() {
+            const savedCart = localStorage.getItem('urbanFarmingCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartUI();
+            }
+
             // Fungsi untuk carousel
             let currentSlide = 0;
             const slides = document.querySelectorAll('.carousel-item');
@@ -981,28 +1200,245 @@
                     showSlide(index);
                 });
             });
-            
-            // Fungsi untuk menambah produk ke keranjang
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            const cartCount = document.querySelector('.cart-count');
-            let count = 3;
-            
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    count++;
-                    cartCount.textContent = count;
-                    
-                    // Animasi tombol
-                    this.textContent = "Ditambahkan ✓";
-                    this.style.backgroundColor = "#4CAF50";
-                    
-                    setTimeout(() => {
-                        this.textContent = "+ Keranjang";
-                        this.style.backgroundColor = "";
-                    }, 1500);
-                });
+        });
+
+        // Tambah produk ke keranjang
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-id');
+                const productName = this.getAttribute('data-name');
+                const productPrice = parseInt(this.getAttribute('data-price'));
+                const productImg = this.getAttribute('data-img');
+                
+                addToCart(productId, productName, productPrice, productImg);
+                
+                // Animasi tombol
+                this.textContent = "Ditambahkan ✓";
+                this.style.backgroundColor = "#4CAF50";
+                
+                setTimeout(() => {
+                    this.textContent = "+ Keranjang";
+                    this.style.backgroundColor = "";
+                }, 1500);
             });
         });
+
+        // Fungsi tambah ke keranjang
+        function addToCart(id, name, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    image,
+                    quantity: 1
+                });
+            }
+            
+            // Simpan ke localStorage
+            localStorage.setItem('urbanFarmingCart', JSON.stringify(cart));
+            
+            updateCartUI();
+        }
+
+        // Update tampilan keranjang
+        function updateCartUI() {
+            // Update jumlah item di ikon keranjang
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update daftar item di modal keranjang
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                cartItems.innerHTML = '<p id="empty-cart-message">Keranjang belanja Anda masih kosong.</p>';
+            } else {
+                emptyCartMessage.style.display = 'none';
+                
+                let cartHTML = '';
+                cart.forEach(item => {
+                    cartHTML += `
+                        <div class="cart-item" data-id="${item.id}">
+                            <img src="${item.image}" alt="${item.name}" width="50" height="50" style="object-fit: cover; border-radius: 5px;">
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1">
+                                <button class="quantity-btn plus">+</button>
+                                <span class="remove-item"><i class="fas fa-trash"></i></span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItems.innerHTML = cartHTML;
+                
+                // Tambahkan event listener untuk tombol quantity dan hapus
+                document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = this.closest('.cart-item').getAttribute('data-id');
+                        const item = cart.find(item => item.id === itemId);
+                        item.quantity += 1;
+                        localStorage.setItem('urbanFarmingCart', JSON.stringify(cart));
+                        updateCartUI();
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = this.closest('.cart-item').getAttribute('data-id');
+                        const item = cart.find(item => item.id === itemId);
+                        if (item.quantity > 1) {
+                            item.quantity -= 1;
+                        } else {
+                            cart = cart.filter(item => item.id !== itemId);
+                        }
+                        localStorage.setItem('urbanFarmingCart', JSON.stringify(cart));
+                        updateCartUI();
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = this.closest('.cart-item').getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== itemId);
+                        localStorage.setItem('urbanFarmingCart', JSON.stringify(cart));
+                        updateCartUI();
+                    });
+                });
+            }
+            
+            // Update total harga
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        // Tampilkan/sembunyikan modal keranjang
+        floatingCart.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+        });
+        
+        cartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartModal.style.display = 'flex';
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+
+        // Checkout via WhatsApp
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Keranjang belanja Anda masih kosong.');
+                return;
+            }
+            
+            let message = "Halo, saya ingin memesan produk berikut:%0A%0A";
+            
+            cart.forEach(item => {
+                message += `- ${item.name} (${item.quantity} x Rp ${item.price.toLocaleString('id-ID')})%0A`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `%0ATotal: Rp ${total.toLocaleString('id-ID')}%0A%0A`;
+            message += "Terima kasih!";
+            
+            const phone = "6281234567890"; // Ganti dengan nomor WhatsApp tujuan
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        });
+
+        // Form kontak
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Validate form
+            if (!name || !email || !subject || !message) {
+                showStatus('Harap isi semua field yang diperlukan', 'error');
+                return;
+            }
+            
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showStatus('Harap masukkan alamat email yang valid', 'error');
+                return;
+            }
+            
+            // Kirim email menggunakan EmailJS
+            emailjs.send("service_your_service_id", "template_your_template_id", {
+                from_name: name,
+                from_email: email,
+                subject: subject,
+                message: message,
+                to_email: "semanansinergi@gmail.com"
+            })
+            .then(function(response) {
+                showStatus('Pesan berhasil dikirim! Kami akan segera membalasnya.', 'success');
+                document.getElementById('contactForm').reset();
+            }, function(error) {
+                showStatus('Terjadi kesalahan. Silakan coba lagi nanti.', 'error');
+            });
+            
+            // Untuk demo, kita akan simulasi pengiriman berhasil
+            showStatus('Pesan berhasil dikirim! Kami akan segera membalasnya.', 'success');
+            document.getElementById('contactForm').reset();
+        });
+        
+        function showStatus(message, type) {
+            const statusElement = document.getElementById('form-status');
+            statusElement.textContent = message;
+            statusElement.className = 'form-status ' + type;
+            statusElement.style.display = 'block';
+            
+            // Hide status after 5 seconds
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Smooth scrolling untuk navigation links
+        document.querySelectorAll('nav a, .btn').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Inisialisasi EmailJS (ganti dengan User ID Anda)
+        // emailjs.init("your_user_id");
     </script>
+    
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
 </body>
 </html>
