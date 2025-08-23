@@ -137,6 +137,22 @@
             color: var(--primary-color);
         }
 
+        /* Hamburger Menu untuk Mobile */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-color);
+            margin-bottom: 4px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
         /* Hero Section dengan carousel */
         .hero {
             margin-top: var(--header-height);
@@ -654,17 +670,27 @@
             border-bottom: 1px solid #eee;
         }
 
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
         .cart-item-info {
             flex: 1;
+            padding: 0 10px;
         }
 
         .cart-item-name {
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .cart-item-price {
             color: var(--primary-color);
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
         .cart-item-quantity {
@@ -679,6 +705,7 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
+            font-size: 0.8rem;
         }
 
         .quantity-input {
@@ -743,6 +770,27 @@
             border: 1px solid #f5c6cb;
         }
 
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
@@ -756,7 +804,35 @@
             }
             
             nav {
-                margin-left: auto;
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: var(--shadow);
+                padding: 10px 0;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0;
+            }
+            
+            nav ul li a {
+                padding: 10px 20px;
+                border-radius: 0;
+            }
+            
+            .hamburger {
+                display: flex;
             }
             
             .hero {
@@ -789,6 +865,20 @@
                 padding-right: 0;
                 margin-bottom: 20px;
             }
+            
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+            
+            .cart-item {
+                flex-wrap: wrap;
+            }
+            
+            .cart-item-info {
+                flex-basis: 100%;
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
@@ -809,7 +899,7 @@
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 
-                <nav>
+                <nav id="nav">
                     <ul>
                         <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="#products"><i class="fas fa-seedling"></i> Produk</a></li>
@@ -818,9 +908,20 @@
                         <li><a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i> Keranjang</a></li>
                     </ul>
                 </nav>
+                
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </header>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        Produk telah ditambahkan ke keranjang!
+    </div>
 
     <!-- Hero Section dengan Carousel -->
     <section id="home" class="hero">
@@ -831,6 +932,24 @@
                         <h2>Selamat Datang di Urban Farming Semanan</h2>
                         <p>Mewujudkan lingkungan hijau yang produktif dan berkelanjutan</p>
                         <a href="#products" class="btn">Belanja Sekarang</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1596726895343-5b2f4be5c72a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                <div class="container">
+                    <div class="carousel-content">
+                        <h2>Produk Organik Berkualitas</h2>
+                        <p>Dapatkan sayuran dan tanaman organik terbaik dari kebun kami</p>
+                        <a href="#products" class="btn">Lihat Produk</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1591890479840-2d765b6ad4f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                <div class="container">
+                    <div class="carousel-content">
+                        <h2>Pelatihan Urban Farming</h2>
+                        <p>Ikuti pelatihan dan workshop untuk belajar bercocok tanam di perkotaan</p>
+                        <a href="#contact" class="btn">Daftar Sekarang</a>
                     </div>
                 </div>
             </div>
@@ -1167,6 +1286,9 @@
         const closeCart = document.getElementById('close-cart');
         const checkoutBtn = document.getElementById('checkout-btn');
         const cartBtn = document.getElementById('cart-btn');
+        const notification = document.getElementById('notification');
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
 
         // Inisialisasi keranjang dari localStorage jika ada
         document.addEventListener('DOMContentLoaded', function() {
@@ -1200,6 +1322,12 @@
                     showSlide(index);
                 });
             });
+        });
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
         });
 
         // Tambah produk ke keranjang
@@ -1242,7 +1370,19 @@
             // Simpan ke localStorage
             localStorage.setItem('urbanFarmingCart', JSON.stringify(cart));
             
+            // Tampilkan notifikasi
+            showNotification();
+            
             updateCartUI();
+        }
+
+        // Tampilkan notifikasi
+        function showNotification() {
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
         }
 
         // Update tampilan keranjang
@@ -1262,7 +1402,7 @@
                 cart.forEach(item => {
                     cartHTML += `
                         <div class="cart-item" data-id="${item.id}">
-                            <img src="${item.image}" alt="${item.name}" width="50" height="50" style="object-fit: cover; border-radius: 5px;">
+                            <img src="${item.image}" alt="${item.name}" width="50" height="50">
                             <div class="cart-item-info">
                                 <div class="cart-item-name">${item.name}</div>
                                 <div class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
@@ -1431,6 +1571,12 @@
                         });
                     }
                 }
+                
+                // Tutup menu mobile setelah klik
+                if (window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
             });
         });
 
@@ -1441,4 +1587,4 @@
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
 </body>
-</html>
+</html>    
