@@ -794,7 +794,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        .youtube-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
 
+        .youtube-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
@@ -903,8 +919,8 @@
 
                 
                 <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Cari produk, sayuran, atau tanaman...">
-                    <button onclick="searchProduct()"><i class="fas fa-search"></i></button>
+                    <input type="text" placeholder="Cari produk, sayuran, atau tanaman...">
+                    <button><i class="fas fa-search"></i></button>
                 </div>
                 
                 <nav id="nav">
@@ -1280,6 +1296,16 @@
                 </div>
             </div>
         </div>
+        <div class="youtube-container">
+            <iframe width="560" height="315"
+                src="https://youtu.be/_CNu-Cjba1E?si=yMjBMNULgMSTwSu_"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
     </section>
 
     <!-- Contact Section -->
@@ -1749,21 +1775,6 @@
             });
         });
 
-       
-        function searchProducts() {
-        const input = document.getElementById('searchInput').value.toLowerCase();
-        const products = document.querySelectorAll('#product .products');
-
-        products.forEach(products => {
-        const productName = products.textContent.toLowerCase();
-        if (productName.includes(input)) {
-            products.style.display = 'block';
-        } else {
-            products.style.display = 'none';
-        }
-        });
-        }
-    
         // Inisialisasi EmailJS (ganti dengan User ID Anda)
         // emailjs.init("your_user_id");
     </script>
