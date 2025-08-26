@@ -1784,6 +1784,26 @@
                 }
             });
         });
+                function searchProducts() {
+        // Ambil input pencarian
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        
+        // Ambil semua elemen produk
+        const products = document.querySelectorAll('.product-card');
+        
+        products.forEach(product => {
+            // Ambil nama produk dari elemen product-name
+            const productName = product.querySelector('.product-name').textContent.toLowerCase();
+            
+            // Jika nama produk mengandung kata kunci pencarian, tampilkan produk
+            if (productName.includes(searchTerm)) {
+            product.style.display = 'block';
+            } else {
+            product.style.display = 'none';
+            }
+        });
+        }
+
 
         // Inisialisasi EmailJS (ganti dengan User ID Anda)
         // emailjs.init("your_user_id");
