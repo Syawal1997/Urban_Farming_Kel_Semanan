@@ -795,22 +795,6 @@
             transform: translateY(0);
         }
         
-        .youtube-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-        }
-
-        .youtube-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
@@ -1296,10 +1280,13 @@
                 </div>
             </div>
         </div>
-   <section class="gallery">
-    <div class="container">
-        <div class="gallery-grid">
-            <div class="youtube-container">
+        </div>
+    </section>
+
+<section class="gallery">
+    <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div class="gallery-grid" style="text-align: center;">
+            <div class="youtube-container" style="max-width: 800px; width: 100%; margin: 0 auto;">
                 <iframe width="560" height="315" 
                     src="https://www.youtube.com/embed/_CNu-Cjba1E"
                     title="YouTube video player"
@@ -1311,8 +1298,6 @@
         </div>
     </div>
 </section>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
