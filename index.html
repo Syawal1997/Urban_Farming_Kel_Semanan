@@ -112,9 +112,15 @@
         } */
 
         /* Navigation */
+        nav {
+            flex-grow: 1;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
+            list-style: none;
+            padding: 0;
         }
 
         nav ul li {
@@ -130,6 +136,7 @@
             border-radius: 5px;
             display: flex;
             align-items: center;
+            font-size: 16px;
         }
 
         nav ul li a i {
@@ -145,11 +152,13 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            justify-content: space-between;
+            width: 30px;
         }
 
         .hamburger span {
             width: 25px;
-            height: 3px;
+            height: 4px;
             background-color: var(--dark-color);
             margin-bottom: 4px;
             border-radius: 5px;
@@ -198,11 +207,6 @@
                 text-align: center;
             }
 
-            /* Optional - Style for Cart button */
-            #cart-btn {
-                margin-left: 0;
-                margin-top: 10px;
-            }
         }
 
         /* Hero Section dengan carousel */
