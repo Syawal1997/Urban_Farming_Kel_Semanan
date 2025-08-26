@@ -888,44 +888,174 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-img">
-                <img src="https://pps.whatsapp.net/v/t61.24694-24/515102266_4099509240289450_2507763993680352256_n.jpg?ccb=11-4&oh=01_Q5Aa2QGVfwppA_7CUGcrZYaHxHGUzCbb09J3himF_QjkEU7O0A&oe=68B841D9&_nc_sid=5e03e0&_nc_cat=106" 
-                        alt="Logo SiPundi"
-                        width="30" 
-                        height="30">        
-                     </div>
+   <header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-img">
+                    <img src="https://pps.whatsapp.net/v/t61.24694-24/515102266_4099509240289450_2507763993680352256_n.jpg?ccb=11-4&oh=01_Q5Aa2QGVfwppA_7CUGcrZYaHxHGUzCbb09J3himF_QjkEU7O0A&oe=68B841D9&_nc_sid=5e03e0&_nc_cat=106" 
+                         alt="Logo SiPundi"
+                         width="30" 
+                         height="30">        
+                </div>
                 <h1>SiPundi</h1>
-               <p style="color: rgb(17, 139, 17);">(Sistem Informasi Pemasaran Urban Farming Digital)</p>
-                </div>
-
-                
-                <!-- <div class="search-bar">
-                    <input type="text" placeholder="Cari produk, sayuran, atau tanaman...">
-                    <button><i class="fas fa-search"></i></button>
-                </div> -->
-                
-                <nav id="nav">
-                    <ul>
-                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#products"><i class="fas fa-seedling"></i> Produk</a></li>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> Tentang</a></li>
-                        <li><a href="#contact"><i class="fas fa-phone"></i> Kontak</a></li>
-                        <li><a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i> Keranjang</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <p style="color: rgb(17, 139, 17);">(Sistem Informasi Pemasaran Urban Farming Digital)</p>
+            </div>
+            
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#products"><i class="fas fa-seedling"></i> Produk</a></li>
+                    <li><a href="#about"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#contact"><i class="fas fa-phone"></i> Kontak</a></li>
+                    <li><a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i> Keranjang</a></li>
+                </ul>
+            </nav>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </header>
+    </div>
+</header>
+
+<style>
+/* Default styling */
+header {
+    background-color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.logo-img img {
+    border-radius: 50%;
+}
+
+nav {
+    flex-grow: 1;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #4CAF50;
+}
+
+/* Hamburger Icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 4px;
+    background-color: #333;
+    width: 100%;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        font-size: 18px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.active + nav ul {
+        display: flex;
+    }
+
+    .logo h1 {
+        font-size: 20px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .logo p {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Optional - Style for Cart button */
+    #cart-btn {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+</style>
+
+<script>
+// JavaScript to toggle the navigation menu on mobile
+document.getElementById('hamburger').addEventListener('click', function () {
+    this.classList.toggle('active');
+    document.querySelector('nav ul').classList.toggle('active');
+});
+</script>
+
 
     <!-- Notification -->
     <div class="notification" id="notification">
