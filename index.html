@@ -35,19 +35,20 @@
         header {
             background: white;
             color: var(--dark-color);
-            padding: 0.5rem 1rem;
+            padding: 10px 0;
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000;
+            z-index: 10;
             box-shadow: var(--shadow);
             height: var(--header-height);
         }
 
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .header-content {
@@ -60,8 +61,6 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px;
         }
 
         .logo h1 {
@@ -85,7 +84,7 @@
         }
 
         /* Search Bar seperti aplikasi e-commerce */
-        .search-bar {
+        /* .search-bar {
             flex: 1;
             max-width: 500px;
             margin: 0 20px;
@@ -110,7 +109,7 @@
             border: none;
             color: var(--primary-color);
             cursor: pointer;
-        }
+        } */
 
         /* Navigation */
         nav ul {
@@ -155,6 +154,55 @@
             margin-bottom: 4px;
             border-radius: 5px;
             transition: all 0.3s ease;
+        }
+
+        /* Media Queries for Mobile Devices */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            nav ul li a {
+                font-size: 18px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active + nav ul {
+                display: flex;
+            }
+
+            .logo h1 {
+                font-size: 20px;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .logo p {
+                font-size: 14px;
+                text-align: center;
+            }
+
+            /* Optional - Style for Cart button */
+            #cart-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
         }
 
         /* Hero Section dengan carousel */
