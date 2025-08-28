@@ -535,14 +535,15 @@
 
         .footer-content {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
+            flex-wrap: wrap;
+            text-align: left;
         }
 
         .footer-section {
             flex: 1;
+            padding: 20px;
             min-width: 250px;
-            margin-bottom: 20px;
         }
 
         .footer-section h3 {
@@ -551,7 +552,16 @@
             padding-bottom: 10px;
             font-size: 1.2rem;
         }
+        .center-section {
+            text-align: center;
+        }
 
+        .center-section ul {
+            list-style: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
         .footer-section h3::after {
             content: '';
             position: absolute;
@@ -1309,15 +1319,16 @@
                     <h3>Tentang Kami</h3>
                     <p>Urban Farming Kelurahan Semanan adalah gerakan masyarakat untuk menciptakan lingkungan hijau yang produktif dan berkelanjutan melalui pertanian perkotaan.</p>
                 </div>
-                <div class="footer-section" style="text-align: center;">
+                <div class="footer-section center-section">
                     <h3>Link Cepat</h3>
-                        <ul style="list-style: none; padding: 0; display: inline-block; text-align: left;">
-                            <li><a href="#home">Beranda</a></li>
-                            <li><a href="#products">Produk</a></li>
-                            <li><a href="#about">Tentang</a></li>
-                            <li><a href="#contact">Kontak</a></li>
-                        </ul>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#products">Produk</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
                 </div>
+
                 <div class="footer-section">
                     <h3>Hubungi Kami</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Perumahan Taman Semanan Indah (TSI) Blok G RT. 16 RW. 12 Kelurahan Semanan</p>
