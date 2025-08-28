@@ -71,17 +71,23 @@
         }
 
         .logo-img {
-            width: 5px;
-            height: 5px;
-            background-color: var(--primary-color);
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.2rem;
             object-fit: cover;
-            border-radius: 50%; /* bikin foto bulat */
+            border-radius: 50%;
             border: 2px solid #4CAF50;
+            overflow: hidden;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Search Bar seperti aplikasi e-commerce */
@@ -169,6 +175,7 @@
             display: flex;
             transition: transform 0.5s ease;
             height: 100%;
+            width: 100%;
         }
 
         .carousel-item {
@@ -796,6 +803,12 @@
         }
         
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .search-bar {
+                max-width: 300px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-wrap: wrap;
@@ -805,6 +818,7 @@
                 order: 3;
                 max-width: 100%;
                 margin: 10px 0 0;
+                width: 100%;
             }
             
             nav {
@@ -847,6 +861,10 @@
                 font-size: 1.5rem;
             }
             
+            .carousel-content p {
+                font-size: 0.9rem;
+            }
+            
             .categories-grid {
                 grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
             }
@@ -883,6 +901,50 @@
                 flex-basis: 100%;
                 margin: 10px 0;
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .youtube-container iframe {
+                width: 100%;
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .hero {
+                height: 200px;
+            }
+            
+            .carousel-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .carousel-content p {
+                font-size: 0.8rem;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .youtube-container iframe {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -893,13 +955,12 @@
             <div class="header-content">
                 <div class="logo">
                     <div class="logo-img">
-                <img src="https://pps.whatsapp.net/v/t61.24694-24/515102266_4099509240289450_2507763993680352256_n.jpg?ccb=11-4&oh=01_Q5Aa2QGVfwppA_7CUGcrZYaHxHGUzCbb09J3himF_QjkEU7O0A&oe=68B841D9&_nc_sid=5e03e0&_nc_cat=106" 
-                        alt="Logo SiPundi"
-                        width="30" 
-                        height="30">        
-                     </div>
-                <h1>SiPundi</h1>
-               <!-- <p style="color: rgb(17, 139, 17);">(Sistem Informasi Pemasaran Urban Farming Digital)</p> -->
+                        <img src="https://pps.whatsapp.net/v/t61.24694-24/515102266_4099509240289450_2507763993680352256_n.jpg?ccb=11-4&oh=01_Q5Aa2QGVfwppA_7CUGcrZYaHxHGUzCbb09J3himF_QjkEU7O0A&oe=68B841D9&_nc_sid=5e03e0&_nc_cat=106" 
+                            alt="Logo SiPundi"
+                            width="40" 
+                            height="40">        
+                    </div>
+                    <h1>SiPundi</h1>
                 </div>
                 
                 <div class="search-bar">
@@ -933,7 +994,7 @@
 
     <!-- Hero Section dengan Carousel -->
     <section id="home" class="hero">
-        <div class="carousel">
+        <div class="carousel" id="carousel">
             <div class="carousel-item" style="background-image: url('https://barat.jakarta.go.id/storage/images/berita/4404f06bca8904c70fa8c28e946aaebc.jpg');">
                 <div class="container">
                     <div class="carousel-content">
@@ -952,7 +1013,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1591890479840-2d765b6ad4f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+            <div class="carousel-item" style="background-image: url('https://multimedia.beritajakarta.id/photo/2014_508c75c8507a2ae5223dfd2faeb98122/cc73f0e6ac1838fdd1ce3e0e31c186fe.jpg');">
                 <div class="container">
                     <div class="carousel-content">
                         <h2>Pelatihan Urban Farming</h2>
@@ -960,61 +1021,14 @@
                         <a href="#contact" class="btn">Daftar Sekarang</a>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
-        <div class="carousel-nav">
-            <div class="carousel-dot active"></div>
-            <div class="carousel-dot active"></div>
-            <!-- <div class="carousel-dot"></div> -->
+        <div class="carousel-nav" id="carousel-nav">
+            <div class="carousel-dot active" data-index="0"></div>
+            <div class="carousel-dot" data-index="1"></div>
+            <div class="carousel-dot" data-index="2"></div>
         </div>
     </section>
-
-    <!-- Kategori Section
-    <section class="categories">
-        <div class="container">
-            <div class="section-title">
-                <h2>Kategori Produk</h2>
-            </div>
-            <div class="categories-grid">
-                <a href="#" class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <div class="category-name">Bibit</div>
-                </a>
-                <a href="#" class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-carrot"></i>
-                    </div>
-                    <div class="category-name">Sayuran</div>
-                </a>
-                <a href="#" class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-apple-alt"></i>
-                    </div>
-                    <div class="category-name">Buah</div>
-                </a>
-                <a href="#" class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-mortar-pestle"></i>
-                    </div>
-                    <div class="category-name">Pupuk</div>
-                </a>
-                <a href="#" class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <div class="category-name">Peralatan</div>
-                </a>
-                <a href="#" class="category-item">
-                    <div class="category-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="category-name">Edukasi</div>
-                </a>
-            </div>
-        </div>
-    </section> -->
 
     <!-- Produk Unggulan -->
     <section id="products" class="featured-products">
@@ -1023,25 +1037,6 @@
                 <h2>Produk Hasil Panen Urban Farming Semanan Sinergi</h2>
             </div>
             <div class="products-grid">
-                <!-- <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Paket Bibit Sayuran">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Paket Bibit Sayuran Organik</div>
-                        <div class="product-price">Rp 35.000</div>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(42)</span>
-                        </div>
-                        <button class="add-to-cart" data-id="1" data-name="Paket Bibit Sayuran Organik" data-price="35000" data-img="https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">+ Keranjang</button>
-                    </div>
-                </div> -->
-                
                 <div class="product-card">
                     <div class="product-image">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Snake_Bean_BNC.jpg/250px-Snake_Bean_BNC.jpg" alt="Kacang Panjang">
@@ -1114,7 +1109,7 @@
                             <i class="far fa-star"></i>
                             <span>(30)</span>
                         </div>
-                        <button class="add-to-cart" data-id="4" data-name="Bayam per Ikat" data-price="5000" data-img="https://www.faunadanflora.com/wp-content/uploads/2016/08/kangkung.jpg.webp">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="4" data-name="Bayam per Ikat" data-price="5000" data-img="https://akcdn.detik.net.id/visual/2018/07/11/cc01493c-6a04-4bea-b33d-3be0086c9f09_169.jpeg?w=650">+ Keranjang</button>
                     </div>
                 </div>
 
@@ -1133,7 +1128,7 @@
                             <i class="far fa-star"></i>
                             <span>(20)</span>
                         </div>
-                        <button class="add-to-cart" data-id="4" data-name="Labu Panjang per Kg" data-price="5000" data-img="https://img.mbizmarket.co.id/products/thumbs/500x500/2022/06/02/393b1effa4b6db86ff3f660fdf4b81f0.jpg">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="5" data-name="Labu Panjang per Kg" data-price="7000" data-img="https://img.mbizmarket.co.id/products/thumbs/500x500/2022/06/02/393b1effa4b6db86ff3f660fdf4b81f0.jpg">+ Keranjang</button>
                     </div>
                 </div>
 
@@ -1152,7 +1147,7 @@
                             <i class="far fa-star"></i>
                             <span>(20)</span>
                         </div>
-                        <button class="add-to-cart" data-id="5" data-name="Daun Singkong per Ikat" data-price="3000" data-img="https://images.tokopedia.net/img/cache/700/VqbcmM/2022/2/12/b91965a7-693a-4863-994c-3388e692c93c.png">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="6" data-name="Daun Singkong per Ikat" data-price="3000" data-img="https://images.tokopedia.net/img/cache/700/VqbcmM/2022/2/12/b91965a7-693a-4863-994c-3388e692c93c.png">+ Keranjang</button>
                     </div>
                 </div>
 
@@ -1171,7 +1166,7 @@
                             <i class="far fa-star"></i>
                             <span>(28)</span>
                         </div>
-                        <button class="add-to-cart" data-id="6" data-name="Ubi Merah per Kg" data-price="8000" data-img="https://pasarsegar.co.id/wp-content/uploads/2020/10/Ubi20Merah.jpg">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="7" data-name="Ubi Merah per Kg" data-price="8000" data-img="https://pasarsegar.co.id/wp-content/uploads/2020/10/Ubi20Merah.jpg">+ Keranjang</button>
                     </div>
                 </div>
 
@@ -1190,47 +1185,9 @@
                             <i class="far fa-star"></i>
                             <span>(28)</span>
                         </div>
-                        <button class="add-to-cart" data-id="7" data-name="Singkong per Kg" data-price="5000" data-img="https://media.istockphoto.com/id/1192869169/id/foto/objek-tunggal-akar-singkong-segar-terisolasi-pada-latar-belakang-putih.jpg?s=612x612&w=0&k=20&c=njM9qAqd4ZQINHu9dvfxGRZJVy9GhmdAQlQy5pWLr-Y=">+ Keranjang</button>
+                        <button class="add-to-cart" data-id="8" data-name="Singkong per Kg" data-price="5000" data-img="https://media.istockphoto.com/id/1192869169/id/foto/objek-tunggal-akar-singkong-segar-terisolasi-pada-latar-belakang-putih.jpg?s=612x612&w=0&k=20&c=njM9qAqd4ZQINHu9dvfxGRZJVy9GhmdAQlQy5pWLr-Y=">+ Keranjang</button>
                     </div>
                 </div>
-
-                <!-- <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1598034992937-93ddb1fa5c3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Set Alat Berkebun">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Set Alat Berkebun Mini</div>
-                        <div class="product-price">Rp 85.000</div>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(56)</span>
-                        </div>
-                        <button class="add-to-cart" data-id="3" data-name="Set Alat Berkebun Mini" data-price="85000" data-img="https://images.unsplash.com/photo-1598034992937-93ddb1fa5c3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">+ Keranjang</button>
-                    </div>
-                </div>
-                 -->
-                <!-- <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1560881726-2cd3eec5f50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pot Tanaman">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Pot Tanaman Hias Modern</div>
-                        <div class="product-price">Rp 75.000</div>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                            <span>(19)</span>
-                        </div>
-                        <button class="add-to-cart" data-id="4" data-name="Pot Tanaman Hias Modern" data-price="75000" data-img="https://images.unsplash.com/photo-1560881726-2cd3eec5f50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">+ Keranjang</button>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
@@ -1258,56 +1215,30 @@
 
     <!-- Gallery Section -->
     <section class="gallery">
-    <div class="container">
-        <div class="section-title">
-            <h2>Galeri Kegiatan</h2>
-        </div>
-        <div class="gallery-grid">
-            <!-- Galeri Foto -->
-            <div class="gallery-item">
-                <img src="https://barat.jakarta.go.id/storage/images/berita/e22f8ff95bfc9db8819f88b2b12a3730.jpg" alt="Kegiatan Pertama">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galeri Kegiatan</h2>
             </div>
-            <div class="gallery-item">
-                <img src="https://barat.jakarta.go.id/storage/images/berita/4404f06bca8904c70fa8c28e946aaebc.jpg" alt="Kebun Kedua">
-            </div>
-            <div class="gallery-item">
-                <img src="https://barat.jakarta.go.id/storage/images/berita/8be43f2c05871662062628e6625f6cc1.jpg" alt="Panen Ketiga">
-            </div>
-            <div class="gallery-item">
-                <img src="https://multimedia.beritajakarta.id/photo/2014_508c75c8507a2ae5223dfd2faeb98122/c4d8346e1782b176a09e236c77436b0d.jpg" alt="Kegiatan Keempat">
-            </div>
-            <div class="gallery-item">
-                <img src="blob:https://web.whatsapp.com/1bb3a91a-71f6-4191-9e2c-939b253cc2ac" alt="Kegiatan Kelima">
+            <div class="gallery-grid">
+                <!-- Galeri Foto -->
+                <div class="gallery-item">
+                    <img src="https://barat.jakarta.go.id/storage/images/berita/e22f8ff95bfc9db8819f88b2b12a3730.jpg" alt="Kegiatan Pertama">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://barat.jakarta.go.id/storage/images/berita/4404f06bca8904c70fa8c28e946aaebc.jpg" alt="Kebun Kedua">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://barat.jakarta.go.id/storage/images/berita/8be43f2c05871662062628e6625f6cc1.jpg" alt="Panen Ketiga">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://multimedia.beritajakarta.id/photo/2014_508c75c8507a2ae5223dfd2faeb98122/c4d8346e1782b176a09e236c77436b0d.jpg" alt="Kegiatan Keempat">
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Instagram Embed Post -->
-    <!-- <div class="gallery-grid" style="text-align: center; margin-top: 30px;">
-        <div class="instagram-container" style="max-width: 600px; margin: 0 auto;">
-            Embed Instagram Post -->
-            <!-- <iframe src="https://www.instagram.com/p/POST_ID/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-        </div>
-    </div> -->
-
-    <!-- YouTube Video Embed -->
-    <div class="gallery-grid" style="display: flex; justify-content: center; margin-top: 30px;">
-        <div class="youtube-container" style="display: flex; justify-content: center; width: 100%; max-width: 800px;">
-            <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/_CNu-Cjba1E"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </div>
-    </div>
-</section>
-
-
-<!-- <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <div class="gallery-grid" style="text-align: center;">
-            <div class="youtube-container" style="max-width: 800px; width: 100%; margin: 0 auto;">
+        <!-- YouTube Video Embed -->
+        <div class="container" style="margin-top: 30px;">
+            <div class="youtube-container" style="display: flex; justify-content: center; width: 100%;">
                 <iframe width="560" height="315" 
                     src="https://www.youtube.com/embed/_CNu-Cjba1E"
                     title="YouTube video player"
@@ -1317,7 +1248,8 @@
                 </iframe>
             </div>
         </div>
-    </div> -->
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -1329,6 +1261,7 @@
                     <h3>Informasi Kontak</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Perumahan Taman Semanan Indah (TSI) Blok G RT. 16 RW. 12 Kelurahan Semanan</p>
                     <p><i class="fas fa-envelope"></i> semanansinergi@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> 081385150544</p>
                     <p><i class="fas fa-clock"></i> Senin - Jumat: 08:00 - 16:00</p>
                     <div class="social-links">
                         <a href="https://wa.me/6281385150544" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -1339,7 +1272,7 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <h3>Kirim Pesan</h3>
+                    <h3>Kirim Saran & Pertanyaan</h3>
                     <div id="form-status" class="form-status"></div>
                     <form id="contactForm">
                         <div class="form-group">
@@ -1356,7 +1289,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Pesan</label>
-                            <textarea id="message" name="message" placeholder="Tulis pesan Anda" required></textarea>
+                            <textarea id="message" name="message" placeholder="Tulis saran atau pertanyaan Anda" required></textarea>
                         </div>
                         <button type="submit" class="add-to-cart">Kirim Pesan</button>
                     </form>
@@ -1374,23 +1307,22 @@
                     <p>Urban Farming Kelurahan Semanan adalah gerakan masyarakat untuk menciptakan lingkungan hijau yang produktif dan berkelanjutan melalui pertanian perkotaan.</p>
                 </div>
                 <div class="footer-section">
-                    <!-- <h3>Link Cepat</h3>
+                    <h3>Link Cepat</h3>
                     <ul>
                         <li><a href="#home">Beranda</a></li>
                         <li><a href="#products">Produk</a></li>
                         <li><a href="#about">Tentang</a></li>
                         <li><a href="#contact">Kontak</a></li>
-                    </ul> -->
+                    </ul>
                 </div>
-                <!-- <div class="footer-section">
+                <div class="footer-section">
                     <h3>Layanan</h3>
                     <ul>
                         <li><a href="#">Bantuan</a></li>
                         <li><a href="#">Syarat & Ketentuan</a></li>
                         <li><a href="#">Kebijakan Privasi</a></li>
-                        <li><a href="#">Pengembalian</a></li>
                     </ul>
-                </div> -->
+                </div>
                 <div class="footer-section">
                     <h3>Hubungi Kami</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Perumahan Taman Semanan Indah (TSI) Blok G RT. 16 RW. 12 Kelurahan Semanan</p>
@@ -1448,19 +1380,19 @@
                 price: 5000,
                 image: "https://www.faunadanflora.com/wp-content/uploads/2016/08/kangkung.jpg.webp"
             },
-             {
+            {
                 id: 4,
                 name: "Bayam",
                 price: 5000,
-                image: "	https://akcdn.detik.net.id/visual/2018/07/11/cc01493c-6a04-4bea-b33d-3be0086c9f09_169.jpeg?w=650"
+                image: "https://akcdn.detik.net.id/visual/2018/07/11/cc01493c-6a04-4bea-b33d-3be0086c9f09_169.jpeg?w=650"
             },
-             {
+            {
                 id: 5,
                 name: "Labu Panjang",
                 price: 7000,
-                image: "https://akcdn.detik.net.id/visual/2018/07/11/cc01493c-6a04-4bea-b33d-3be0086c9f09_169.jpeg?w=650"
+                image: "https://img.mbizmarket.co.id/products/thumbs/500x500/2022/06/02/393b1effa4b6db86ff3f660fdf4b81f0.jpg"
             },
-             {
+            {
                 id: 6,
                 name: "Daun Singkong",
                 price: 3000,
@@ -1476,14 +1408,8 @@
                 id: 8,
                 name: "Singkong",
                 price: 5000,
-                image: "https://media.istockphoto.com/id/1192869169/id/fot…20&c=njM9qAqd4ZQINHu9dvfxGRZJVy9GhmdAQlQy5pWLr-Y="
-            },
-            //  {
-            //     id: 4,
-            //     name: "Pot Tanaman Hias Modern",
-            //     price: 75000,
-            //     image: "https://images.unsplash.com/photo-1560881726-2cd3eec5f50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-            // }
+                image: "https://media.istockphoto.com/id/1192869169/id/foto/objek-tunggal-akar-singkong-segar-terisolasi-pada-latar-belakang-putih.jpg?s=612x612&w=0&k=20&c=njM9qAqd4ZQINHu9dvfxGRZJVy9GhmdAQlQy5pWLr-Y="
+            }
         ];
 
         // Keranjang belanja
@@ -1500,6 +1426,9 @@
         const notification = document.getElementById('notification');
         const hamburger = document.getElementById('hamburger');
         const nav = document.getElementById('nav');
+        const carousel = document.getElementById('carousel');
+        const carouselNav = document.getElementById('carousel-nav');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
 
         // Inisialisasi keranjang dari localStorage jika ada
         document.addEventListener('DOMContentLoaded', function() {
@@ -1509,13 +1438,24 @@
                 updateCartUI();
             }
 
-            // Fungsi untuk carousel
+            // Inisialisasi carousel
+            initCarousel();
+            
+            // Inisialisasi EmailJS
+            emailjs.init("YOUR_EMAILJS_USER_ID"); // Ganti dengan User ID EmailJS Anda
+        });
+
+        // Fungsi untuk inisialisasi carousel
+        function initCarousel() {
             let currentSlide = 0;
             const slides = document.querySelectorAll('.carousel-item');
             const dots = document.querySelectorAll('.carousel-dot');
             
             function showSlide(n) {
-                slides.forEach(slide => slide.style.transform = `translateX(-${n * 100}%)`);
+                if (n >= slides.length) n = 0;
+                if (n < 0) n = slides.length - 1;
+                
+                carousel.style.transform = `translateX(-${n * 100}%)`;
                 dots.forEach(dot => dot.classList.remove('active'));
                 dots[n].classList.add('active');
                 currentSlide = n;
@@ -1533,7 +1473,7 @@
                     showSlide(index);
                 });
             });
-        });
+        }
 
         // Hamburger menu toggle
         hamburger.addEventListener('click', () => {
@@ -1707,7 +1647,7 @@
             message += `%0ATotal: Rp ${total.toLocaleString('id-ID')}%0A%0A`;
             message += "Terima kasih!";
             
-            const phone = "6281385150544"; // Ganti dengan nomor WhatsApp tujuan
+            const phone = "6281385150544";
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         });
 
@@ -1735,7 +1675,7 @@
             }
             
             // Kirim email menggunakan EmailJS
-            emailjs.send("service_your_service_id", "template_your_template_id", {
+            emailjs.send("YOUR_EMAILJS_SERVICE_ID", "YOUR_EMAILJS_TEMPLATE_ID", {
                 from_name: name,
                 from_email: email,
                 subject: subject,
@@ -1748,10 +1688,6 @@
             }, function(error) {
                 showStatus('Terjadi kesalahan. Silakan coba lagi nanti.', 'error');
             });
-            
-            // Untuk demo, kita akan simulasi pengiriman berhasil
-            showStatus('Pesan berhasil dikirim! Kami akan segera membalasnya.', 'success');
-            document.getElementById('contactForm').reset();
         });
         
         function showStatus(message, type) {
@@ -1790,32 +1726,25 @@
                 }
             });
         });
-                function searchProducts() {
-        // Ambil input pencarian
-        const searchTerm = document.getElementById('search-input').value.toLowerCase();
         
-        // Ambil semua elemen produk
-        const products = document.querySelectorAll('.product-card');
-        
-        products.forEach(product => {
-            // Ambil nama produk dari elemen product-name
-            const productName = product.querySelector('.product-name').textContent.toLowerCase();
+        // Fungsi pencarian produk
+        function searchProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
             
-            // Jika nama produk mengandung kata kunci pencarian, tampilkan produk
-            if (productName.includes(searchTerm)) {
-            product.style.display = 'block';
-            } else {
-            product.style.display = 'none';
-            }
-        });
+            productCards.forEach(card => {
+                const productName = card.querySelector('.product-name').textContent.toLowerCase();
+                
+                if (productName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
-
-
-        // Inisialisasi EmailJS (ganti dengan User ID Anda)
-        // emailjs.init("your_user_id");
     </script>
     
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
 </body>
-</html>    
+</html>
