@@ -551,12 +551,19 @@
             font-size: 1.2em;
             margin-bottom: 15px;
             color: #ddd;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-            display: inline-block;  /* Mengatur garis hanya sepanjang teks */
-            width: auto;  /* Agar panjang garis sesuai dengan panjang teks */
-            max-width: 100%;  /* Pastikan garis tidak melebihi lebar container */
+            position: relative;  /* Posisi relatif untuk menempatkan garis */
         }
+
+        .footer-section h3::after {
+            content: '';  /* Tidak ada teks, hanya garis */
+            position: absolute;
+            bottom: -5px;  /* Menempatkan garis sedikit di bawah teks */
+            left: 0;
+            width: 50%;  /* Menentukan panjang garis, misalnya 50% dari lebar teks */
+            height: 2px;  /* Ketebalan garis */
+            background-color: #ddd;  /* Warna garis */
+        }
+
 
 
         .center-section {
