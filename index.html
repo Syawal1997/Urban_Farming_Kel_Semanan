@@ -550,12 +550,14 @@
         .footer-section h3 {
             font-size: 1.2em;
             margin-bottom: 15px;
-            color: #ddd;  /* Warna judul, bisa disesuaikan */
-            border-bottom: 1px solid #ddd;  /* Menambahkan garis bawah */
-            padding-bottom: 3px;  /* Memberi jarak antara teks dan garis */
-             display: inline-block;
-            width: auto;
+            color: #ddd;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            display: inline-block;  /* Mengatur garis hanya sepanjang teks */
+            width: auto;  /* Agar panjang garis sesuai dengan panjang teks */
+            max-width: 100%;  /* Pastikan garis tidak melebihi lebar container */
         }
+
 
         .center-section {
             text-align: center;
