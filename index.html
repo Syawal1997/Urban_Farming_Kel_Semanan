@@ -550,21 +550,13 @@
         .footer-section h3 {
             font-size: 1.2em;
             margin-bottom: 15px;
-            color: #ddd;
-            position: relative;  /* Posisi relatif untuk menempatkan garis */
+            color: #ddd;  /* Warna judul, bisa disesuaikan */
+            border-bottom: 1px solid #ddd;  /* Menambahkan garis bawah */
+            padding-bottom: 3px;  /* Memberi jarak antara teks dan garis */
+            display: inline-block;
+            width: auto;
         }
-
-        .footer-section h3::after {
-            content: '';  /* Tidak ada teks, hanya garis */
-            position: absolute;
-            bottom: -5px;  /* Menempatkan garis sedikit di bawah teks */
-            left: 0;
-            width: 50%;  /* Menentukan panjang garis, misalnya 50% dari lebar teks */
-            height: 2px;  /* Ketebalan garis */
-            background-color: #ddd;  /* Warna garis */
-        }
-
-
+        
 
         .center-section {
             text-align: center;
