@@ -443,69 +443,27 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 200px;
+            box-shadow: var(--shadow);
         }
 
         .gallery-item img {
             width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            object-fit: cover;
-        }
-
-        .gallery-item img:hover {
-            transform: scale(1.05);
-        }
-
-        .see-more-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #seeMoreBtn {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            background-color: #007BFF;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            padding-top: 60px;
-            left: 0;
-            top: 0;
-            width: 100%;
             height: 100%;
-            overflow-y: auto;
-            background-color: rgba(0, 0, 0, 0.8);
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .modal-content {
-            margin: auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            max-width: 90%;
-        }
-
-        .close-btn {
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            color: #333;
-            cursor: pointer;
-        }
-
-        .modal-gallery {
-            margin-top: 20px;
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
 
         /* Contact Section */
@@ -1265,86 +1223,86 @@
         <h2>Galeri Kegiatan</h2>
     </div>
 
-            <div class="gallery-grid">
-                <!-- Galeri Foto - 1 hingga 8 -->
-                <div class="gallery-item">
-                    <img src="https://barat.jakarta.go.id/storage/images/berita/acc940730556e556c75485abe39a7e84.jpg" alt="Kegiatan Pertama" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://multimedia.beritajakarta.id/photo/2014_508c75c8507a2ae5223dfd2faeb98122/cc73f0e6ac1838fdd1ce3e0e31c186fe.jpg" alt="Kebun Kedua" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://barat.jakarta.go.id/storage/images/berita/4404f06bca8904c70fa8c28e946aaebc.jpg" alt="Panen Ketiga" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://barat.jakarta.go.id/storage/images/berita/e22f8ff95bfc9db8819f88b2b12a3730.jpg" alt="Kegiatan Keempat" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://barat.jakarta.go.id/storage/images/berita/8be43f2c05871662062628e6625f6cc1.jpg" alt="Kegiatan Kelima" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/syawal1997/Urban_Farming_Kel_Semanan/main/IMG-20250826-WA0004.jpg" alt="Kegiatan Keenam" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/syawal1997/Urban_Farming_Kel_Semanan/main/IMG-20250826-WA0003.jpg" alt="Kegiatan Ketujuh" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://multimedia.beritajakarta.id/photo/2014_508c75c8507a2ae5223dfd2faeb98122/c4d8346e1782b176a09e236c77436b0d.jpg" alt="Kegiatan Kedelapan" loading="lazy">
-                </div>
+        <div class="gallery-grid">
+            <!-- Galeri Foto - 1 hingga 8 -->
+            <div class="gallery-item">
+                <img src="https://barat.jakarta.go.id/storage/images/berita/acc940730556e556c75485abe39a7e84.jpg" alt="Kegiatan Pertama" loading="lazy">
             </div>
-
-            <!-- Tombol untuk melihat galeri tambahan -->
-            <div class="see-more-container">
-                <button id="seeMoreBtn">Lihat Kegiatan Lainnya</button>
+            <div class="gallery-item">
+                <img src="https://multimedia.beritajakarta.id/photo/2014_508c75c8507a2ae5223dfd2faeb98122/cc73f0e6ac1838fdd1ce3e0e31c186fe.jpg" alt="Kebun Kedua" loading="lazy">
             </div>
+            <div class="gallery-item">
+                <img src="https://barat.jakarta.go.id/storage/images/berita/4404f06bca8904c70fa8c28e946aaebc.jpg" alt="Panen Ketiga" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://barat.jakarta.go.id/storage/images/berita/e22f8ff95bfc9db8819f88b2b12a3730.jpg" alt="Kegiatan Keempat" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://barat.jakarta.go.id/storage/images/berita/8be43f2c05871662062628e6625f6cc1.jpg" alt="Kegiatan Kelima" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/syawal1997/Urban_Farming_Kel_Semanan/main/IMG-20250826-WA0004.jpg" alt="Kegiatan Keenam" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/syawal1997/Urban_Farming_Kel_Semanan/main/IMG-20250826-WA0003.jpg" alt="Kegiatan Ketujuh" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://multimedia.beritajakarta.id/photo/2014_508c75c8507a2ae5223dfd2faeb98122/c4d8346e1782b176a09e236c77436b0d.jpg" alt="Kegiatan Kedelapan" loading="lazy">
+            </div>
+        </div>
 
-            <!-- Modal -->
-            <div id="galleryModal" class="modal">
-                <div class="modal-content">
-                    <span class="close-btn">&times;</span>
-                    <div class="gallery-grid modal-gallery">
-                        <!-- Foto 9-20 -->
-                        <!-- Gunakan gambar acak atau placeholder jika belum ada semua -->
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+9" alt="Kegiatan 9" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+10" alt="Kegiatan 10" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+11" alt="Kegiatan 11" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+12" alt="Kegiatan 12" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+13" alt="Kegiatan 13" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+14" alt="Kegiatan 14" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+15" alt="Kegiatan 15" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+16" alt="Kegiatan 16" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+17" alt="Kegiatan 17" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+18" alt="Kegiatan 18" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+19" alt="Kegiatan 19" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/300x200?text=Kegiatan+20" alt="Kegiatan 20" loading="lazy">
-                        </div>
+        <!-- Tombol untuk melihat galeri tambahan -->
+        <div class="see-more-container">
+            <button id="seeMoreBtn">Lihat Kegiatan Lainnya</button>
+        </div>
+
+        <!-- Modal -->
+        <div id="galleryModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="gallery-grid modal-gallery">
+                    <!-- Foto 9-20 -->
+                    <!-- Gunakan gambar acak atau placeholder jika belum ada semua -->
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+9" alt="Kegiatan 9" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+10" alt="Kegiatan 10" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+11" alt="Kegiatan 11" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+12" alt="Kegiatan 12" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+13" alt="Kegiatan 13" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+14" alt="Kegiatan 14" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+15" alt="Kegiatan 15" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+16" alt="Kegiatan 16" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+17" alt="Kegiatan 17" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+18" alt="Kegiatan 18" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+19" alt="Kegiatan 19" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200?text=Kegiatan+20" alt="Kegiatan 20" loading="lazy">
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- YouTube Video Embed -->
         <div class="container" style="margin-top: 30px;">
@@ -1617,6 +1575,7 @@
                     modal.style.display = "none";
                 }
             }
+
         // Fungsi tambah ke keranjang
         function addToCart(id, name, price, image) {
             const existingItem = cart.find(item => item.id === id);
